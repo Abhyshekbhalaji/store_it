@@ -18,7 +18,7 @@ const Dashboard = async () => {
   ]);
 
   // Get usage summary
-  const usageSummary = getUsageSummary(totalSpace);
+ const usageSummary = getUsageSummary(totalSpace);
 
   return (
     <div className="dashboard-container">

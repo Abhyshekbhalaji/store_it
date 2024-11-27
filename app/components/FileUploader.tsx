@@ -56,6 +56,7 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
       });
 
       await Promise.all(uploadPromises);
+      
     },
     [ownerId, accountId, path],
   );

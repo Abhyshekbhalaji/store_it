@@ -3,7 +3,7 @@ import {InputFile} from 'node-appwrite/file'
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { appwriteConfig } from '../appwrite/config';
 import { ID, Models, Query } from 'node-appwrite';
-import { constructFileUrl, getFileType, parseStringify } from '../utils';
+import { constructFileUrl, getFileType, getUsageSummary, parseStringify } from '../utils';
 import { revalidatePath } from 'next/cache';
 import { getCurrentUser } from './user.actions';
 const handleError = (error: unknown, message: string) => {
@@ -198,3 +198,25 @@ export const updateFileUsers=async({fileId,emails,path}:UpdateFileUsersProps)=>{
               handleError(error, "Error calculating total space used:, ");
             }
           }
+         
+          export async function getTotalSizeByType(fileType: string): Promise<number> {
+            try {
+              const totalSpace = await getTotalSpaceUsed();
+              const summary=await getUsageSummary(totalSpace);
+            
+              for(let i=0;i<summary.length;i++){
+                    if(summary[i].title.toLocaleLowerCase()===fileType){
+                        return summary[i].size;
+                    }
+
+              }
+              return 0;
+
+          
+              // Ensure the requested type exists in the totalSpace object
+            } catch (error) {
+              handleError(error, "Error fetching total size for type:");
+              return 0; // Default to 0 in case of an error
+            }
+          }
+          
