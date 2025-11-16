@@ -4,7 +4,7 @@ A full-stack cloud storage solution built with **Next.js 14**, **Appwrite**, and
 
 ## 🚀 Live Demo
 
-[View Live Demo](#) | [Video Walkthrough](#)
+[View Live Demo](https://store-it-eight-alpha.vercel.app/) 
 
 ## 📋 Table of Contents
 
